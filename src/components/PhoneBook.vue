@@ -41,11 +41,26 @@
 
         methods: {
             AddItem(item) {
-                this.list.push(item);
+                var isFound = this.list.some(function (contact) {
+                    return contact.phoneNumber === item.phoneNumber;
+                });
+
+                if (isFound) {
+                    this.$bvModal.msgBoxOk('Контакт с таким номером телефона уже есть!', {
+                        size: 'md',
+                        buttonSize: 'sm',
+                        okVariant: 'primary',
+                        hideHeader: true,
+                        hideHeaderClose: true,
+                        footerClass: 'p-2',
+                        centered: false
+                    });
+                } else {
+                    this.list.push(item);
+                }
             },
             removeItem(item) {
                 this.$bvModal.msgBoxConfirm('Вы действительно хотите удалить ' + item.fullName + "?", {
-                    //title: 'Подтвердите удаление',
                     size: 'md',
                     buttonSize: 'sm',
                     okVariant: 'primary',
