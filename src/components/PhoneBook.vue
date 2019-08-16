@@ -35,7 +35,7 @@
         data() {
             return {
                 newContact: {},
-                list: []
+                list: [],
             };
         },
 
@@ -44,8 +44,23 @@
                 this.list.push(item);
             },
             removeItem(item) {
-                this.list = this.list.filter(function (e) {
-                    return e.id !== item.id;
+                this.$bvModal.msgBoxConfirm('Вы действительно хотите удалить ' + item.fullName + "?", {
+                    //title: 'Подтвердите удаление',
+                    size: 'md',
+                    buttonSize: 'sm',
+                    okVariant: 'primary',
+                    okTitle: 'Удалить',
+                    cancelTitle: 'Отмена',
+                    footerClass: 'p-2',
+                    hideHeader: true,
+                    hideHeaderClose: true,
+                    centered: false
+                }).then(value => {
+                    if (value) {
+                        this.list = this.list.filter(function (e) {
+                            return e.id !== item.id;
+                        });
+                    }
                 });
             }
         }
