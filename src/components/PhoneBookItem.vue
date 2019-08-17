@@ -29,6 +29,9 @@
         watch: {
             selectAll: function (newValue) {
                 this.selected = newValue;
+            },
+            selected: function (newValue) {
+                this.$emit("selection-changed", this.item, newValue);
             }
         }
     }

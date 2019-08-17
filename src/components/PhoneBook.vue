@@ -14,7 +14,8 @@
                        :index="index"
                        :key="item.id"
                        :selectAll="selectAll"
-                       @remove-item="removeItem"></PhoneBookItem>
+                       @remove-item="removeItem"
+                       @selection-changed="changeItemSelection"></PhoneBookItem>
         <div class="row top-space" v-if="list.length === 0">
             <div class="col centered">Пока нет ни одного контакта.</div>
         </div>
@@ -40,7 +41,15 @@
                 newContact: {},
 
                 /* для хранения списка контактов */
-                list: []
+                list: [
+                    /*{id: 1000, firstName: "John", lastName: "Lennon", fullName: "John Lennon", phoneNumber: "111-111-111"},
+                    {id: 2000, firstName: "Ned", lastName: "Stark", fullName: "Ned Stark", phoneNumber: "222-222-222"},
+                    {id: 3000, firstName: "Michael", lastName: "Boyarskiy", fullName: "Michael Boyarskiy", phoneNumber: "333-333-333"},
+                    {id: 4000, firstName: "Max", lastName: "Kuzhelev", fullName: "Max Kuzhelev", phoneNumber: "444-444-444"}*/
+                ],
+
+                /* для хранения контактов, отмеченных чекбоксами */
+                selectedList: []
             };
         },
 
@@ -66,7 +75,11 @@
                 }
             },
             removeItem(item) {
-                this.$bvModal.msgBoxConfirm('Вы действительно хотите удалить ' + item.fullName + "?", {
+                let confirmMessage = this.selectedList.length === 0 ?
+                    `Вы действительно хотите удалить ${item.fullName}?` :
+                    `Вы действительно хотите удалить выбранные контакты?`;
+
+                this.$bvModal.msgBoxConfirm(confirmMessage, {
                     size: 'md',
                     buttonSize: 'sm',
                     okVariant: 'primary',
@@ -78,11 +91,32 @@
                     centered: false
                 }).then(value => {
                     if (value) {
+                        let toDelete = this.selectedList.length === 0 ?
+                            [item] : this.selectedList;
+
                         this.list = this.list.filter(function (e) {
-                            return e.id !== item.id;
+                            return !toDelete.includes(e);
                         });
+
+                        this.selectedList = [];
+                        this.selectAll = false;
                     }
                 });
+            },
+
+            changeItemSelection(item, newValue) {
+                /* Добавление/удаление из списка с установленным чекбоксом */
+                if (newValue) {
+                    //добавить если нет
+                    if (!this.selectedList.includes(item)) {
+                        this.selectedList.push(item);
+                    }
+                } else {
+                    //удалить если есть
+                    this.selectedList = this.selectedList.filter(function (e) {
+                        return e.id !== item.id;
+                    });
+                }
             }
         }
     }
