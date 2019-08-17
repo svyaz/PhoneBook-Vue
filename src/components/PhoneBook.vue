@@ -1,19 +1,20 @@
 <template>
     <div>
-        <AddItemForm v-model="newContact" v-on:add-item="AddItem"></AddItemForm>
+        <AddItemForm v-model="newContact" @add-item="addItem"></AddItemForm>
         <SearchForm></SearchForm>
         <div class="row list-header">
-            <div class="col-1"><label><input type="checkbox" id="check-head"></label></div>
+            <div class="col-1"><label><input type="checkbox" v-model="selectAll"></label></div>
             <div class="col-1">№</div>
             <div class="col-5">Фамилия, имя</div>
             <div class="col-4">Телефон</div>
             <div class="col-1"></div>
         </div>
         <PhoneBookItem v-for="(item, index) in list"
-                       v-bind:item="item"
-                       v-bind:index="index"
-                       v-bind:key="item.id"
-                       v-on:remove-item="removeItem"></PhoneBookItem>
+                       :item="item"
+                       :index="index"
+                       :key="item.id"
+                       :selectAll="selectAll"
+                       @remove-item="removeItem"></PhoneBookItem>
         <div class="row top-space" v-if="list.length === 0">
             <div class="col centered">Пока нет ни одного контакта.</div>
         </div>
@@ -27,25 +28,30 @@
 
     export default {
         name: "PhoneBook",
-
         components: {AddItemForm, SearchForm, PhoneBookItem},
-
         props: ["item"],
 
         data() {
             return {
+                /* для изменения чекбоксов в элементах списка */
+                selectAll: false,
+
+                /* для получения нового контакта из формы добавления */
                 newContact: {},
-                list: [],
+
+                /* для хранения списка контактов */
+                list: []
             };
         },
 
         methods: {
-            AddItem(item) {
-                var isFound = this.list.some(function (contact) {
+            addItem(item) {
+                let isFound = this.list.some(function (contact) {
                     return contact.phoneNumber === item.phoneNumber;
                 });
 
                 if (isFound) {
+                    //TODO promise return value?
                     this.$bvModal.msgBoxOk('Контакт с таким номером телефона уже есть!', {
                         size: 'md',
                         buttonSize: 'sm',

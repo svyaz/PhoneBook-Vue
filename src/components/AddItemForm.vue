@@ -7,19 +7,22 @@
         </div>
         <div class="row">
             <div class="col-6 col-md-4 col-lg-3">
-                <label><input type="text" placeholder="Имя" tabindex="1" v-model="newFirstName"
-                              v-bind:class="(isHighlighted && newFirstName === '') ? 'empty-field' : ''"></label>
+                <label><input type="text" placeholder="Имя" tabindex="1"
+                              v-model="newFirstName"
+                              :class="(isHighlighted && newFirstName === '') ? 'empty-field' : ''"></label>
             </div>
             <div class="col-6 col-md-4 col-lg-3">
-                <label><input type="text" placeholder="Фамилия" tabindex="2" v-model="newLastName"
-                              v-bind:class="(isHighlighted && newLastName === '') ? 'empty-field' : ''"></label>
+                <label><input type="text" placeholder="Фамилия" tabindex="2"
+                              v-model="newLastName"
+                              :class="(isHighlighted && newLastName === '') ? 'empty-field' : ''"></label>
             </div>
             <div class="col-6 col-md-4 col-lg-3">
-                <label><input type="text" placeholder="Телефон" tabindex="3" v-model="newPhoneNumber"
-                              v-bind:class="(isHighlighted && newPhoneNumber === '') ? 'empty-field' : ''"></label>
+                <label><input type="text" placeholder="Телефон" tabindex="3"
+                              v-model="newPhoneNumber"
+                              :class="(isHighlighted && newPhoneNumber === '') ? 'empty-field' : ''"></label>
             </div>
             <div class="col-3 col-md-2">
-                <button v-on:click="addContact" tabindex="4">Добавить</button>
+                <button @click="addContact" tabindex="4">Добавить</button>
             </div>
         </div>
         <div class="row" v-if="isHighlighted">
@@ -68,10 +71,6 @@
 
                 this.$emit("add-item", this.newContact);
             }
-
-            /*showError: function (text) {
-                alert(text);
-            }*/
         }
     }
 </script>
