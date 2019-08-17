@@ -9,17 +9,17 @@
             <div class="col-6 col-md-4 col-lg-3">
                 <label><input type="text" placeholder="Имя" tabindex="1"
                               v-model="newFirstName"
-                              :class="(isHighlighted && newFirstName === '') ? 'empty-field' : ''"></label>
+                              :class="{'empty-field': (isHighlighted && newFirstName === '')}"></label>
             </div>
             <div class="col-6 col-md-4 col-lg-3">
                 <label><input type="text" placeholder="Фамилия" tabindex="2"
                               v-model="newLastName"
-                              :class="(isHighlighted && newLastName === '') ? 'empty-field' : ''"></label>
+                              :class="{'empty-field': (isHighlighted && newLastName === '')}"></label>
             </div>
             <div class="col-6 col-md-4 col-lg-3">
                 <label><input type="text" placeholder="Телефон" tabindex="3"
                               v-model="newPhoneNumber"
-                              :class="(isHighlighted && newPhoneNumber === '') ? 'empty-field' : ''"></label>
+                              :class="{'empty-field': (isHighlighted && newPhoneNumber === '')}"></label>
             </div>
             <div class="col-3 col-md-2">
                 <button @click="addContact" tabindex="4">Добавить</button>
