@@ -25,11 +25,13 @@
                 <button @click="addContact" tabindex="4">Добавить</button>
             </div>
         </div>
-        <div class="row" v-if="isHighlighted">
-            <div class="col centered">
-                <b-alert show variant="danger" v-text="errorMessage"></b-alert>
+        <transition name="fade">
+            <div class="row" v-if="isHighlighted">
+                <div class="col centered">
+                    <b-alert show variant="danger" v-text="errorMessage"></b-alert>
+                </div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 
