@@ -27,7 +27,7 @@
         </div>
         <div class="row" v-if="isHighlighted">
             <div class="col centered">
-                <span v-text="errorMessage" class="error-message"></span>
+                <b-alert show variant="danger" v-text="errorMessage"></b-alert>
             </div>
         </div>
     </div>
