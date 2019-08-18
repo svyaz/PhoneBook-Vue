@@ -1,12 +1,12 @@
 <template>
     <div>
         <AddItemForm v-model="newContact" @add-item="addItem"></AddItemForm>
-        <SearchForm @search-items="search"></SearchForm>
+        <SearchForm @search-items="setSearchString"></SearchForm>
         <div class="row list-header">
             <div class="col-1"><label><input type="checkbox" v-model="selectAll"></label></div>
             <div class="col-1">№</div>
-            <div class="col-5">Фамилия, имя</div>
-            <div class="col-4">Телефон</div>
+            <div class="col-5">Имя и фамилия</div>
+            <div class="col-4">Номер телефона</div>
             <div class="col-1"></div>
         </div>
         <PhoneBookItem v-for="(item, index) in filteredList"
@@ -131,7 +131,7 @@
                     });
                 }
             },
-            search(searchString) {
+            setSearchString(searchString) {
                 this.searchString = searchString;
             }
         }

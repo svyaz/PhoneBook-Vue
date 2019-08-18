@@ -7,17 +7,17 @@
         </div>
         <div class="row">
             <div class="col-6 col-md-4 col-lg-3">
-                <label><input type="text" placeholder="Имя" tabindex="1"
+                <label><input type="text" :placeholder="firstNameText" tabindex="1"
                               v-model="newFirstName"
                               :class="{'empty-field': (isHighlighted && newFirstName === '')}"></label>
             </div>
             <div class="col-6 col-md-4 col-lg-3">
-                <label><input type="text" placeholder="Фамилия" tabindex="2"
+                <label><input type="text" :placeholder="lastNameText" tabindex="2"
                               v-model="newLastName"
                               :class="{'empty-field': (isHighlighted && newLastName === '')}"></label>
             </div>
             <div class="col-6 col-md-4 col-lg-3">
-                <label><input type="text" placeholder="Телефон" tabindex="3"
+                <label><input type="text" :placeholder="phoneNumberText" tabindex="3"
                               v-model="newPhoneNumber"
                               :class="{'empty-field': (isHighlighted && newPhoneNumber === '')}"></label>
             </div>
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-    const ERR_MSG_EMPTY_ITEM_TEXT = "Нужно заполнить все поля.";
+    const ERR_MSG_EMPTY_ITEMS = "Вы не заполнили поля: ";
 
     export default {
         name: "AddItemForm",
@@ -45,6 +45,9 @@
                 newFirstName: "",
                 newLastName: "",
                 newPhoneNumber: "",
+                firstNameText: "Имя",
+                lastNameText: "Фамилия",
+                phoneNumberText: "Номер телефона",
                 isHighlighted: false,
                 errorMessage: ""
             }
@@ -52,11 +55,23 @@
 
         methods: {
             addContact() {
-                if (this.newFirstName === "" || this.newLastName === "" || this.newPhoneNumber === "") {
+                let notFilled = [];
+                if (this.newFirstName === "") {
+                    notFilled.push(this.firstNameText);
+                }
+                if (this.newLastName === "") {
+                    notFilled.push(this.lastNameText);
+                }
+                if (this.newPhoneNumber === "") {
+                    notFilled.push(this.phoneNumberText);
+                }
+
+                if (notFilled.length > 0) {
                     this.isHighlighted = true;
-                    this.errorMessage = ERR_MSG_EMPTY_ITEM_TEXT;
+                    this.errorMessage = ERR_MSG_EMPTY_ITEMS + notFilled.join(", ");
                     return;
                 }
+
                 this.newContact = {
                     id: (new Date()).getTime(),
                     firstName: this.newFirstName,
