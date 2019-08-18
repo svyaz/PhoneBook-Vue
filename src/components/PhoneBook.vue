@@ -1,7 +1,7 @@
 <template>
     <div>
         <AddItemForm v-model="newContact" @add-item="addItem"></AddItemForm>
-        <SearchForm></SearchForm>
+        <SearchForm @search-items="search"></SearchForm>
         <div class="row list-header">
             <div class="col-1"><label><input type="checkbox" v-model="selectAll"></label></div>
             <div class="col-1">№</div>
@@ -9,7 +9,7 @@
             <div class="col-4">Телефон</div>
             <div class="col-1"></div>
         </div>
-        <PhoneBookItem v-for="(item, index) in list"
+        <PhoneBookItem v-for="(item, index) in filteredList"
                        :item="item"
                        :index="index"
                        :key="item.id"
@@ -49,8 +49,23 @@
                 ],
 
                 /* для хранения контактов, отмеченных чекбоксами */
-                selectedList: []
+                selectedList: [],
+
+                /* для поиска */
+                searchString: ""
             };
+        },
+
+        computed: {
+            filteredList: function () {
+                let str = this.searchString.toLowerCase();
+                return this.list.filter(function (item) {
+                    return (str.length === 0 ||
+                        item.firstName.toLowerCase().indexOf(str) >= 0 ||
+                        item.lastName.toLowerCase().indexOf(str) >= 0 ||
+                        item.phoneNumber.toLowerCase().indexOf(str) >= 0);
+                });
+            }
         },
 
         methods: {
@@ -60,7 +75,6 @@
                 });
 
                 if (isFound) {
-                    //TODO promise return value?
                     this.$bvModal.msgBoxOk('Контакт с таким номером телефона уже есть!', {
                         size: 'md',
                         buttonSize: 'sm',
@@ -103,7 +117,6 @@
                     }
                 });
             },
-
             changeItemSelection(item, newValue) {
                 /* Добавление/удаление из списка с установленным чекбоксом */
                 if (newValue) {
@@ -117,6 +130,9 @@
                         return e.id !== item.id;
                     });
                 }
+            },
+            search(searchString) {
+                this.searchString = searchString;
             }
         }
     }
