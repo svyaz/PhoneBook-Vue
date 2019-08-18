@@ -46,10 +46,10 @@
 
                 /* для хранения списка контактов */
                 list: [
-                    {id: 1000, firstName: "John", lastName: "Lennon", fullName: "John Lennon", phoneNumber: "111-111-111"},
+                    /*{id: 1000, firstName: "John", lastName: "Lennon", fullName: "John Lennon", phoneNumber: "111-111-111"},
                     {id: 2000, firstName: "Ned", lastName: "Stark", fullName: "Ned Stark", phoneNumber: "222-222-222"},
                     {id: 3000, firstName: "Michael", lastName: "Boyarskiy", fullName: "Michael Boyarskiy", phoneNumber: "333-333-333"},
-                    {id: 4000, firstName: "Max", lastName: "Kuzhelev", fullName: "Max Kuzhelev", phoneNumber: "444-444-444"}
+                    {id: 4000, firstName: "Max", lastName: "Kuzhelev", fullName: "Max Kuzhelev", phoneNumber: "444-444-444"}*/
                 ],
 
                 /* для хранения контактов, отмеченных чекбоксами */
