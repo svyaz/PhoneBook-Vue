@@ -46,10 +46,10 @@
 
                 /* для хранения списка контактов */
                 list: [
-                    /*{id: 1000, firstName: "John", lastName: "Lennon", fullName: "John Lennon", phoneNumber: "111-111-111"},
+                    {id: 1000, firstName: "John", lastName: "Lennon", fullName: "John Lennon", phoneNumber: "111-111-111"},
                     {id: 2000, firstName: "Ned", lastName: "Stark", fullName: "Ned Stark", phoneNumber: "222-222-222"},
                     {id: 3000, firstName: "Michael", lastName: "Boyarskiy", fullName: "Michael Boyarskiy", phoneNumber: "333-333-333"},
-                    {id: 4000, firstName: "Max", lastName: "Kuzhelev", fullName: "Max Kuzhelev", phoneNumber: "444-444-444"}*/
+                    {id: 4000, firstName: "Max", lastName: "Kuzhelev", fullName: "Max Kuzhelev", phoneNumber: "444-444-444"}
                 ],
 
                 /* для хранения контактов, отмеченных чекбоксами */
@@ -141,3 +141,23 @@
         }
     }
 </script>
+
+<style lang="sass">
+    $blue: #87cefa
+    $padding: 0.3em
+
+    @mixin list-row
+        margin-left: -5px
+        margin-right: -5px
+
+    .list-header
+        text-align: left
+        background-color: $blue
+        padding: $padding 0 0
+        @include list-row
+
+    .list-element
+        padding-top: $padding
+        border-bottom: solid 1px $blue
+        @include list-row
+</style>

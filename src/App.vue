@@ -20,66 +20,56 @@
     }
 </script>
 
-<style>
-    body {
-        background-color: #f0f0f0;
-        font-family: Tahoma, Arial, serif;
-        font-size: 14px;
-        color: #222;
-    }
+<style lang="sass">
+    $font: Tahoma, Arial, serif
+    $fontSize: 14px
+    $grey: #f0f0f0
+    $grey1: #bababa
+    $grey2: #cccccc
+    $grey3: #fefefe
+    $almostBlack: #222
+    $lightPink: #fddfdf
+    $red: #f00
+    $padding: 10px
 
-    .top-space {
-        padding-top: 1em;
-    }
+    body
+        background-color: $grey
+        font-family: $font
+        font-size: $fontSize
+        color: $almostBlack
 
-    .row div {
-        padding-right: 10px;
-        padding-left: 10px;
-    }
+    .top-space
+        padding-top: 1em
+
+    .row div
+        padding-right: $padding
+        padding-left: $padding
 
     .row label,
     .row input,
-    .row button {
-        width: 100%;
-    }
+    .row button
+        width: 100%
 
     .row input,
-    .row button {
-        border: solid 1px #bababa;
-        border-radius: 3px;
-    }
+    .row button
+        border: solid 1px $grey1
+        border-radius: 3px
 
-    .row button {
-        background: linear-gradient(0deg, #cccccc, #fefefe);
-    }
+    .row button
+        background: linear-gradient(0deg, $grey2, $grey3)
 
-    .list-header {
-        text-align: left;
-        background-color: #87cefa;
-        padding: 0.3em 0 0;
-    }
+    .centered
+        text-align: center
 
-    .centered {
-        text-align: center;
-    }
+    .empty-field
+        background-color: $lightPink
 
-    .list-element {
-        padding-top: 0.3em;
-        border-bottom: solid 1px #87cefa;
-    }
+    .error-message
+        color: $red
 
-    .empty-field {
-        background-color: #fddfdf;
-    }
+    .fade-enter-active, .fade-leave-active
+        transition: opacity 0.5s
 
-    .error-message {
-        color: #f00;
-    }
-
-    .fade-enter-active, .fade-leave-active {
-        transition: opacity 0.5s;
-    }
-    .fade-enter, .fade-leave-to {
-        opacity: 0;
-    }
+    .fade-enter, .fade-leave-to
+        opacity: 0
 </style>
