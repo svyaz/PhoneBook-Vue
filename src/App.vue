@@ -31,6 +31,7 @@
     $lightPink: #fddfdf
     $red: #f00
     $padding: 10px
+    $paddingInput: 5px
 
     body
         background-color: $grey
@@ -58,6 +59,10 @@
     .row button
         background: linear-gradient(0deg, $grey2, $grey3)
 
+    .row input
+        padding-left: $paddingInput
+        padding-right: $paddingInput
+
     .centered
         text-align: center
 
@@ -67,9 +72,11 @@
     .error-message
         color: $red
 
-    .fade-enter-active, .fade-leave-active
+    .fade-enter-active,
+    .fade-leave-active
         transition: opacity 0.5s
 
-    .fade-enter, .fade-leave-to
+    .fade-enter,
+    .fade-leave-to
         opacity: 0
 </style>
