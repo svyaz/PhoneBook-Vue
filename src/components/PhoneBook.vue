@@ -62,7 +62,7 @@
 
         computed: {
             filteredList: function () {
-                let str = this.searchString.toLowerCase();
+                const str = this.searchString.toLowerCase();
                 return this.list.filter(function (item) {
                     return (str.length === 0 ||
                         item.firstName.toLowerCase().indexOf(str) >= 0 ||
@@ -74,7 +74,7 @@
 
         methods: {
             addItem(item) {
-                let isFound = this.list.some(function (contact) {
+                const isFound = this.list.some(function (contact) {
                     return contact.phoneNumber === item.phoneNumber;
                 });
 
@@ -93,7 +93,7 @@
                 }
             },
             removeItem(item) {
-                let confirmMessage = this.selectedList.length === 0 ?
+                const confirmMessage = this.selectedList.length === 0 ?
                     `Вы действительно хотите удалить ${item.fullName}?` :
                     `Вы действительно хотите удалить выбранные контакты?`;
 
@@ -109,7 +109,7 @@
                     centered: false
                 }).then(value => {
                     if (value) {
-                        let toDelete = this.selectedList.length === 0 ?
+                        const toDelete = this.selectedList.length === 0 ?
                             [item] : this.selectedList;
 
                         this.list = this.list.filter(function (e) {

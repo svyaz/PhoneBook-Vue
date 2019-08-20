@@ -57,7 +57,7 @@
 
         methods: {
             addContact() {
-                let notFilled = [];
+                const notFilled = [];
                 if (this.newFirstName === "") {
                     notFilled.push(this.firstNameText);
                 }
