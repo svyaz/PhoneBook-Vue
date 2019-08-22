@@ -141,23 +141,3 @@
         }
     }
 </script>
-
-<style lang="sass">
-    $blue: #87cefa
-    $padding: 0.3em
-
-    @mixin list-row
-        margin-left: -5px
-        margin-right: -5px
-
-    .list-header
-        text-align: left
-        background-color: $blue
-        padding: $padding 0 0
-        @include list-row
-
-    .list-element
-        padding-top: $padding
-        border-bottom: solid 1px $blue
-        @include list-row
-</style>
